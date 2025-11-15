@@ -2,8 +2,8 @@ package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.service;
 
 
 import com.github.wz2cool.dynamic.DynamicQuery;
-import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.mapper.CategoryMapper;
-import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity.CategoryDO;
+import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.mapper.table.CategoryMapper;
+import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity.table.CategoryDO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
