@@ -1,4 +1,4 @@
-package com.example.config;
+package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.OAS_30)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
