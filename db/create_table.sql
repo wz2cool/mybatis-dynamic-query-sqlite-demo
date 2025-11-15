@@ -1,0 +1,184 @@
+DROP TABLE IF EXISTS [Categories];
+CREATE TABLE [Categories]
+(      [CategoryID] INTEGER PRIMARY KEY AUTOINCREMENT,
+       [CategoryName] TEXT,
+       [Description] TEXT,
+       [Picture] BLOB
+);
+
+DROP TABLE IF EXISTS [CustomerCustomerDemo];
+CREATE TABLE [CustomerCustomerDemo](
+   [CustomerID]TEXT NOT NULL,
+   [CustomerTypeID]TEXT NOT NULL,
+   PRIMARY KEY ("CustomerID","CustomerTypeID"),
+   FOREIGN KEY ([CustomerID]) REFERENCES [Customers] ([CustomerID])
+		ON DELETE NO ACTION ON UPDATE NO ACTION,
+	FOREIGN KEY ([CustomerTypeID]) REFERENCES [CustomerDemographics] ([CustomerTypeID])
+		ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+DROP TABLE IF EXISTS [CustomerDemographics];
+CREATE TABLE [CustomerDemographics](
+   [CustomerTypeID]TEXT NOT NULL,
+   [CustomerDesc]TEXT,
+    PRIMARY KEY ("CustomerTypeID")
+);
+
+-- Customers
+DROP TABLE IF EXISTS [Customers];
+CREATE TABLE [Customers]
+(      [CustomerID] TEXT,
+       [CompanyName] TEXT,
+       [ContactName] TEXT,
+       [ContactTitle] TEXT,
+       [Address] TEXT,
+       [City] TEXT,
+       [Region] TEXT,
+       [PostalCode] TEXT,
+       [Country] TEXT,
+       [Phone] TEXT,
+       [Fax] TEXT,
+       PRIMARY KEY (`CustomerID`)
+);
+-- Employee
+DROP TABLE IF EXISTS [Employees];
+--
+CREATE TABLE [Employees]
+(      [EmployeeID] INTEGER PRIMARY KEY AUTOINCREMENT,
+       [LastName] TEXT,
+       [FirstName] TEXT,
+       [Title] TEXT,
+       [TitleOfCourtesy] TEXT,
+       [BirthDate] DATE,
+       [HireDate] DATE,
+       [Address] TEXT,
+       [City] TEXT,
+       [Region] TEXT,
+       [PostalCode] TEXT,
+       [Country] TEXT,
+       [HomePhone] TEXT,
+       [Extension] TEXT,
+       [Photo] BLOB,
+       [Notes] TEXT,
+       [ReportsTo] INTEGER,
+       [PhotoPath] TEXT,
+	   FOREIGN KEY ([ReportsTo]) REFERENCES [Employees] ([EmployeeID])
+		ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+-- EmployeeTerritories
+DROP TABLE IF EXISTS [EmployeeTerritories];
+CREATE TABLE [EmployeeTerritories](
+   [EmployeeID]INTEGER NOT NULL,
+   [TerritoryID]TEXT NOT NULL,
+    PRIMARY KEY ("EmployeeID","TerritoryID"),
+	FOREIGN KEY ([EmployeeID]) REFERENCES [Employees] ([EmployeeID])
+		ON DELETE NO ACTION ON UPDATE NO ACTION,
+	FOREIGN KEY ([TerritoryID]) REFERENCES [Territories] ([TerritoryID])
+		ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+--[Order Details]
+DROP TABLE IF EXISTS[Order Details];
+CREATE TABLE [Order Details](
+   [OrderID]INTEGER NOT NULL,
+   [ProductID]INTEGER NOT NULL,
+   [UnitPrice]NUMERIC NOT NULL DEFAULT 0,
+   [Quantity]INTEGER NOT NULL DEFAULT 1,
+   [Discount]REAL NOT NULL DEFAULT 0,
+    PRIMARY KEY ("OrderID","ProductID"),
+    CHECK ([Discount]>=(0) AND [Discount]<=(1)),
+    CHECK ([Quantity]>(0)),
+    CHECK ([UnitPrice]>=(0)),
+	FOREIGN KEY ([OrderID]) REFERENCES [Orders] ([OrderID])
+		ON DELETE NO ACTION ON UPDATE NO ACTION,
+	FOREIGN KEY ([ProductID]) REFERENCES [Products] ([ProductID])
+		ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+--Orders
+DROP TABLE IF EXISTS [Orders];
+CREATE TABLE [Orders](
+   [OrderID]INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+   [CustomerID]TEXT,
+   [EmployeeID]INTEGER,
+   [OrderDate]DATETIME,
+   [RequiredDate]DATETIME,
+   [ShippedDate]DATETIME,
+   [ShipVia]INTEGER,
+   [Freight]NUMERIC DEFAULT 0,
+   [ShipName]TEXT,
+   [ShipAddress]TEXT,
+   [ShipCity]TEXT,
+   [ShipRegion]TEXT,
+   [ShipPostalCode]TEXT,
+   [ShipCountry]TEXT,
+   FOREIGN KEY ([EmployeeID]) REFERENCES [Employees] ([EmployeeID])
+		ON DELETE NO ACTION ON UPDATE NO ACTION,
+	FOREIGN KEY ([CustomerID]) REFERENCES [Customers] ([CustomerID])
+		ON DELETE NO ACTION ON UPDATE NO ACTION,
+	FOREIGN KEY ([ShipVia]) REFERENCES [Shippers] ([ShipperID])
+		ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+--Products
+DROP TABLE IF EXISTS [Products];
+CREATE TABLE [Products](
+   [ProductID]INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+   [ProductName]TEXT NOT NULL,
+   [SupplierID]INTEGER,
+   [CategoryID]INTEGER,
+   [QuantityPerUnit]TEXT,
+   [UnitPrice]NUMERIC DEFAULT 0,
+   [UnitsInStock]INTEGER DEFAULT 0,
+   [UnitsOnOrder]INTEGER DEFAULT 0,
+   [ReorderLevel]INTEGER DEFAULT 0,
+   [Discontinued]TEXT NOT NULL DEFAULT '0',
+    CHECK ([UnitPrice]>=(0)),
+    CHECK ([ReorderLevel]>=(0)),
+    CHECK ([UnitsInStock]>=(0)),
+    CHECK ([UnitsOnOrder]>=(0)),
+	FOREIGN KEY ([CategoryID]) REFERENCES [Categories] ([CategoryID])
+		ON DELETE NO ACTION ON UPDATE NO ACTION,
+	FOREIGN KEY ([SupplierID]) REFERENCES [Suppliers] ([SupplierID])
+		ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+CREATE TABLE [Regions](
+   [RegionID]INTEGER NOT NULL PRIMARY KEY,
+   [RegionDescription]TEXT NOT NULL
+);
+
+--Shippers
+DROP TABLE IF EXISTS[Shippers];
+CREATE TABLE [Shippers](
+   [ShipperID]INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+   [CompanyName]TEXT NOT NULL,
+   [Phone]TEXT
+);
+
+--Suppliers
+DROP TABLE IF EXISTS [Suppliers];
+CREATE TABLE [Suppliers](
+   [SupplierID]INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+   [CompanyName]TEXT NOT NULL,
+   [ContactName]TEXT,
+   [ContactTitle]TEXT,
+   [Address]TEXT,
+   [City]TEXT,
+   [Region]TEXT,
+   [PostalCode]TEXT,
+   [Country]TEXT,
+   [Phone]TEXT,
+   [Fax]TEXT,
+   [HomePage]TEXT
+);
+
+CREATE TABLE [Territories](
+   [TerritoryID]TEXT NOT NULL,
+   [TerritoryDescription]TEXT NOT NULL,
+   [RegionID]INTEGER NOT NULL,
+    PRIMARY KEY ("TerritoryID"),
+	FOREIGN KEY ([RegionID]) REFERENCES [Regions] ([RegionID])
+		ON DELETE NO ACTION ON UPDATE NO ACTION
+);
