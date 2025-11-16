@@ -2,6 +2,7 @@ package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.service;
 
 
 import com.github.wz2cool.dynamic.DynamicQuery;
+
 import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.mapper.table.CategoryMapper;
 import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity.table.CategoryDO;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,5 @@ public class CategoryService {
                 .and(CategoryDO::getCategoryName, o -> o.contains(categoryName));
         return categoryMapper.selectByDynamicQuery(query);
     }
-
-
 
 }
