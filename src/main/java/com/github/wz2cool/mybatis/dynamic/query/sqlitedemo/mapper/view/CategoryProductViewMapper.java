@@ -1,4 +1,4 @@
-package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.mapper;
+package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.mapper.view;
 
 import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity.view.CategoryProductViewDO;
 import com.github.wz2cool.dynamic.mybatis.mapper.DynamicQueryMapper;

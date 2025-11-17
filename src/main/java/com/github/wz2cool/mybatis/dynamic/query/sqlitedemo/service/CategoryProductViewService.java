@@ -1,13 +1,11 @@
 package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.service;
 
 import com.github.wz2cool.dynamic.DynamicQuery;
-import com.github.wz2cool.dynamic.FilterGroupDescriptor;
-import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.mapper.CategoryProductViewMapper;
+import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.mapper.view.CategoryProductViewMapper;
 import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity.view.CategoryProductViewDO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
