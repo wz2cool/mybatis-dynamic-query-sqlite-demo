@@ -1,11 +1,14 @@
 package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.service;
 
 import com.github.wz2cool.dynamic.DynamicQuery;
+import com.github.wz2cool.dynamic.mybatis.ParamExpression;
+import com.github.wz2cool.dynamic.mybatis.QueryHelper;
 import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.mapper.view.CategoryProductViewMapper;
 import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity.view.CategoryProductViewDO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.management.Query;
 import java.util.List;
 import java.util.Map;
 
@@ -32,30 +35,23 @@ public class CategoryProductViewService {
 
         DynamicQuery<CategoryProductViewDO> onQuery = DynamicQuery.createQuery(CategoryProductViewDO.class)
                 .and(CategoryProductViewDO::getProductName, o -> o.contains("a"));
-
-        Map<String, Object> queryParamMap = onQuery.toQueryParamMap();
-        Object whereExpression = queryParamMap.get("whereExpression");
-        String onConditionExpression = String.format("and %s", whereExpression);
-
+        ParamExpression whereExpression = onQuery.toWhereExpression();
+        String onConditionExpression = String.format("and %s", whereExpression.getExpression());
 
         DynamicQuery<CategoryProductViewDO> query = DynamicQuery.createQuery(CategoryProductViewDO.class)
                 .and(CategoryProductViewDO::getCategoryName, o -> o.contains(categoryName))
                 .queryParam("ON_CONDITION_EXPRESSION", onConditionExpression);
 
-
-        for (Map.Entry<String, Object> entry : queryParamMap.entrySet()) {
+        for (Map.Entry<String, Object> entry : whereExpression.getParamMap().entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
-            if(key.startsWith("param_")){
-                query.queryParam(key, value);
-            }
+            query.queryParam(key, value);
 
         }
 
         Map<String, Object> queryParamMap1 = query.toQueryParamMap();
         return categoryProductViewMapper.selectByDynamicQuery(query);
     }
-
 
 
 }
