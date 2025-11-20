@@ -1,6 +1,6 @@
 package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.controller;
 
-import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity.CategoryDO;
+import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity.table.CategoryDO;
 import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -1,4 +1,4 @@
-package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity;
+package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity.table;
 
 import java.io.Serializable;
 

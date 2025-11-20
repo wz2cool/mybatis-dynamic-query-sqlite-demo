@@ -45,11 +45,7 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.github.wz2cool</groupId>
-            <artifactId>mybatis-dynamic-query</artifactId>
-            <version>3.2.32</version>
-        </dependency>
+
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
@@ -68,6 +64,12 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.wz2cool</groupId>
+            <artifactId>mybatis-dynamic-query</artifactId>
+            <version>3.2.35</version>
         </dependency>
 
         <!-- SQLite JDBC驱动 -->

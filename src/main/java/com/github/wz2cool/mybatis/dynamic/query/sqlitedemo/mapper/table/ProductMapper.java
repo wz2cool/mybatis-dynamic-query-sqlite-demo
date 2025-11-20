@@ -1,6 +1,6 @@
-package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.mapper;
+package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.mapper.table;
 
-import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity.ProductDO;
+import com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity.table.ProductDO;
 import com.github.wz2cool.dynamic.mybatis.mapper.DynamicQueryMapper;
 import org.apache.ibatis.annotations.Mapper;
 

@@ -1,17 +1,18 @@
-package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity;
+package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity.table;
 
 import javax.persistence.*;
 
 /**
- * 客户表实体类
+ * 供应商表实体类
  */
 @Entity
-@Table(name = "Customers")
-public class CustomerDO {
+@Table(name = "Suppliers")
+public class SupplierDO {
     
     @Id
-    @Column(name = "CustomerID")
-    private String customerId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "SupplierID")
+    private Integer supplierId;
     
     @Column(name = "CompanyName")
     private String companyName;
@@ -43,13 +44,16 @@ public class CustomerDO {
     @Column(name = "Fax")
     private String fax;
     
+    @Column(name = "HomePage")
+    private String homePage;
+    
     // Getters and Setters
-    public String getCustomerId() {
-        return customerId;
+    public Integer getSupplierId() {
+        return supplierId;
     }
     
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setSupplierId(Integer supplierId) {
+        this.supplierId = supplierId;
     }
     
     public String getCompanyName() {
@@ -130,5 +134,13 @@ public class CustomerDO {
     
     public void setFax(String fax) {
         this.fax = fax;
+    }
+    
+    public String getHomePage() {
+        return homePage;
+    }
+    
+    public void setHomePage(String homePage) {
+        this.homePage = homePage;
     }
 }

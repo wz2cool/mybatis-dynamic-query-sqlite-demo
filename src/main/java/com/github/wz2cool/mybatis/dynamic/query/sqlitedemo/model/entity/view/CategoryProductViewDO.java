@@ -1,125 +1,132 @@
-package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity;
+package com.github.wz2cool.mybatis.dynamic.query.sqlitedemo.model.entity.view;
 
-import javax.persistence.*;
+import com.github.wz2cool.dynamic.mybatis.View;
+
+import javax.persistence.Column;
 import java.math.BigDecimal;
 
-/**
- * 产品表实体类
- */
-@Entity
-@Table(name = "Products")
-public class ProductDO {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ProductID")
+@View("Categories JOIN Products ON Categories.CategoryID = Products.CategoryID ${ON_CONDITION_EXPRESSION}")
+public class CategoryProductViewDO {
+
+    @Column(name = "CategoryName", table = "Categories")
+    private String categoryName;
+
+    @Column(name = "ProductID", table = "Products")
     private Integer productId;
-    
-    @Column(name = "ProductName")
+
+    @Column(name = "ProductName", table = "Products")
     private String productName;
-    
-    @Column(name = "SupplierID")
+
+    @Column(name = "SupplierID", table = "Products")
     private Integer supplierId;
-    
-    @Column(name = "CategoryID")
+
+    @Column(name = "CategoryID", table = "Products")
     private Integer categoryId;
-    
-    @Column(name = "QuantityPerUnit")
+
+    @Column(name = "QuantityPerUnit", table = "Products")
     private String quantityPerUnit;
-    
-    @Column(name = "UnitPrice")
+
+    @Column(name = "UnitPrice", table = "Products")
     private BigDecimal unitPrice;
-    
-    @Column(name = "UnitsInStock")
+
+    @Column(name = "UnitsInStock", table = "Products")
     private Integer unitsInStock;
-    
-    @Column(name = "UnitsOnOrder")
+
+    @Column(name = "UnitsOnOrder", table = "Products")
     private Integer unitsOnOrder;
-    
-    @Column(name = "ReorderLevel")
+
+    @Column(name = "ReorderLevel", table = "Products")
     private Integer reorderLevel;
-    
-    @Column(name = "Discontinued")
+
+    @Column(name = "Discontinued", table = "Products")
     private String discontinued;
-    
+
     // Getters and Setters
     public Integer getProductId() {
         return productId;
     }
-    
+
     public void setProductId(Integer productId) {
         this.productId = productId;
     }
-    
+
     public String getProductName() {
         return productName;
     }
-    
+
     public void setProductName(String productName) {
         this.productName = productName;
     }
-    
+
     public Integer getSupplierId() {
         return supplierId;
     }
-    
+
     public void setSupplierId(Integer supplierId) {
         this.supplierId = supplierId;
     }
-    
+
     public Integer getCategoryId() {
         return categoryId;
     }
-    
+
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
-    
+
     public String getQuantityPerUnit() {
         return quantityPerUnit;
     }
-    
+
     public void setQuantityPerUnit(String quantityPerUnit) {
         this.quantityPerUnit = quantityPerUnit;
     }
-    
+
     public BigDecimal getUnitPrice() {
         return unitPrice;
     }
-    
+
     public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
-    
+
     public Integer getUnitsInStock() {
         return unitsInStock;
     }
-    
+
     public void setUnitsInStock(Integer unitsInStock) {
         this.unitsInStock = unitsInStock;
     }
-    
+
     public Integer getUnitsOnOrder() {
         return unitsOnOrder;
     }
-    
+
     public void setUnitsOnOrder(Integer unitsOnOrder) {
         this.unitsOnOrder = unitsOnOrder;
     }
-    
+
     public Integer getReorderLevel() {
         return reorderLevel;
     }
-    
+
     public void setReorderLevel(Integer reorderLevel) {
         this.reorderLevel = reorderLevel;
     }
-    
+
     public String getDiscontinued() {
         return discontinued;
     }
-    
+
     public void setDiscontinued(String discontinued) {
         this.discontinued = discontinued;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

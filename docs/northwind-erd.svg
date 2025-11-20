@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .table {
+      fill: #f0f8ff;
+      stroke: #4682b4;
+      stroke-width: 2;
+    }
+    .table-header {
+      fill: #4682b4;
+      stroke: #4682b4;
+    }
+    .table-title {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      fill: white;
+    }
+    .column {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      fill: #333;
+    }
+    .pk {
+      font-weight: bold;
+      fill: #d9534f;
+    }
+    .fk {
+      fill: #5bc0de;
+    }
+    .relationship {
+      stroke: #5cb85c;
+      stroke-width: 2;
+      fill: none;
+      marker-end: url(#arrowhead);
+    }
+    .relationship-label {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      fill: #5cb85c;
+    }
+  </style>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#5cb85c"/>
+    </marker>
+  </defs>
+
+  <!-- Categories Table -->
+  <rect x="50" y="50" width="200" height="120" class="table"/>
+  <rect x="50" y="50" width="200" height="25" class="table-header"/>
+  <text x="150" y="67" text-anchor="middle" class="table-title">Categories</text>
+  <text x="60" y="90" class="column pk">CategoryID (PK)</text>
+  <text x="60" y="105" class="column">CategoryName</text>
+  <text x="60" y="120" class="column">Description</text>
+  <text x="60" y="135" class="column">Picture</text>
+
+  <!-- Products Table -->
+  <rect x="300" y="50" width="200" height="180" class="table"/>
+  <rect x="300" y="50" width="200" height="25" class="table-header"/>
+  <text x="400" y="67" text-anchor="middle" class="table-title">Products</text>
+  <text x="310" y="90" class="column pk">ProductID (PK)</text>
+  <text x="310" y="105" class="column">ProductName</text>
+  <text x="310" y="120" class="column fk">SupplierID (FK)</text>
+  <text x="310" y="135" class="column fk">CategoryID (FK)</text>
+  <text x="310" y="150" class="column">QuantityPerUnit</text>
+  <text x="310" y="165" class="column">UnitPrice</text>
+  <text x="310" y="180" class="column">UnitsInStock</text>
+  <text x="310" y="195" class="column">Discontinued</text>
+
+  <!-- Suppliers Table -->
+  <rect x="550" y="50" width="200" height="180" class="table"/>
+  <rect x="550" y="50" width="200" height="25" class="table-header"/>
+  <text x="650" y="67" text-anchor="middle" class="table-title">Suppliers</text>
+  <text x="560" y="90" class="column pk">SupplierID (PK)</text>
+  <text x="560" y="105" class="column">CompanyName</text>
+  <text x="560" y="120" class="column">ContactName</text>
+  <text x="560" y="135" class="column">Phone</text>
+  <text x="560" y="150" class="column">Address</text>
+  <text x="560" y="165" class="column">City</text>
+  <text x="560" y="180" class="column">Country</text>
+
+  <!-- Customers Table -->
+  <rect x="50" y="250" width="200" height="180" class="table"/>
+  <rect x="50" y="250" width="200" height="25" class="table-header"/>
+  <text x="150" y="267" text-anchor="middle" class="table-title">Customers</text>
+  <text x="60" y="290" class="column pk">CustomerID (PK)</text>
+  <text x="60" y="305" class="column">CompanyName</text>
+  <text x="60" y="320" class="column">ContactName</text>
+  <text x="60" y="335" class="column">Address</text>
+  <text x="60" y="350" class="column">City</text>
+  <text x="60" y="365" class="column">Country</text>
+  <text x="60" y="380" class="column">Phone</text>
+
+  <!-- Orders Table -->
+  <rect x="300" y="250" width="200" height="180" class="table"/>
+  <rect x="300" y="250" width="200" height="25" class="table-header"/>
+  <text x="400" y="267" text-anchor="middle" class="table-title">Orders</text>
+  <text x="310" y="290" class="column pk">OrderID (PK)</text>
+  <text x="310" y="305" class="column fk">CustomerID (FK)</text>
+  <text x="310" y="320" class="column fk">EmployeeID (FK)</text>
+  <text x="310" y="335" class="column">OrderDate</text>
+  <text x="310" y="350" class="column">RequiredDate</text>
+  <text x="310" y="365" class="column">ShippedDate</text>
+  <text x="310" y="380" class="column fk">ShipVia (FK)</text>
+  <text x="310" y="395" class="column">Freight</text>
+
+  <!-- Employees Table -->
+  <rect x="550" y="250" width="200" height="180" class="table"/>
+  <rect x="550" y="250" width="200" height="25" class="table-header"/>
+  <text x="650" y="267" text-anchor="middle" class="table-title">Employees</text>
+  <text x="560" y="290" class="column pk">EmployeeID (PK)</text>
+  <text x="560" y="305" class="column">LastName</text>
+  <text x="560" y="320" class="column">FirstName</text>
+  <text x="560" y="335" class="column">Title</text>
+  <text x="560" y="350" class="column fk">ReportsTo (FK)</text>
+  <text x="560" y="365" class="column">BirthDate</text>
+  <text x="560" y="380" class="column">HireDate</text>
+
+  <!-- Order Details Table -->
+  <rect x="300" y="450" width="200" height="120" class="table"/>
+  <rect x="300" y="450" width="200" height="25" class="table-header"/>
+  <text x="400" y="467" text-anchor="middle" class="table-title">Order Details</text>
+  <text x="310" y="490" class="column pk fk">OrderID (PK, FK)</text>
+  <text x="310" y="505" class="column pk fk">ProductID (PK, FK)</text>
+  <text x="310" y="520" class="column">UnitPrice</text>
+  <text x="310" y="535" class="column">Quantity</text>
+  <text x="310" y="550" class="column">Discount</text>
+
+  <!-- Shippers Table -->
+  <rect x="550" y="450" width="200" height="80" class="table"/>
+  <rect x="550" y="450" width="200" height="25" class="table-header"/>
+  <text x="650" y="467" text-anchor="middle" class="table-title">Shippers</text>
+  <text x="560" y="490" class="column pk">ShipperID (PK)</text>
+  <text x="560" y="505" class="column">CompanyName</text>
+  <text x="560" y="520" class="column">Phone</text>
+
+  <!-- CustomerDemographics Table -->
+  <rect x="50" y="450" width="200" height="80" class="table"/>
+  <rect x="50" y="450" width="200" height="25" class="table-header"/>
+  <text x="150" y="467" text-anchor="middle" class="table-title">CustomerDemographics</text>
+  <text x="60" y="490" class="column pk">CustomerTypeID (PK)</text>
+  <text x="60" y="505" class="column">CustomerDesc</text>
+
+  <!-- CustomerCustomerDemo Table -->
+  <rect x="50" y="550" width="200" height="80" class="table"/>
+  <rect x="50" y="550" width="200" height="25" class="table-header"/>
+  <text x="150" y="567" text-anchor="middle" class="table-title">CustomerCustomerDemo</text>
+  <text x="60" y="590" class="column pk fk">CustomerID (PK, FK)</text>
+  <text x="60" y="605" class="column pk fk">CustomerTypeID (PK, FK)</text>
+
+  <!-- EmployeeTerritories Table -->
+  <rect x="300" y="550" width="200" height="80" class="table"/>
+  <rect x="300" y="550" width="200" height="25" class="table-header"/>
+  <text x="400" y="567" text-anchor="middle" class="table-title">EmployeeTerritories</text>
+  <text x="310" y="590" class="column pk fk">EmployeeID (PK, FK)</text>
+  <text x="310" y="605" class="column pk fk">TerritoryID (PK, FK)</text>
+
+  <!-- Territories Table -->
+  <rect x="550" y="550" width="200" height="80" class="table"/>
+  <rect x="550" y="550" width="200" height="25" class="table-header"/>
+  <text x="650" y="567" text-anchor="middle" class="table-title">Territories</text>
+  <text x="560" y="590" class="column pk">TerritoryID (PK)</text>
+  <text x="560" y="605" class="column">TerritoryDescription</text>
+  <text x="560" y="620" class="column fk">RegionID (FK)</text>
+
+  <!-- Regions Table -->
+  <rect x="800" y="550" width="200" height="80" class="table"/>
+  <rect x="800" y="550" width="200" height="25" class="table-header"/>
+  <text x="900" y="567" text-anchor="middle" class="table-title">Regions</text>
+  <text x="810" y="590" class="column pk">RegionID (PK)</text>
+  <text x="810" y="605" class="column">RegionDescription</text>
+
+  <!-- Relationships -->
+  
+  <!-- Products -> Categories -->
+  <path d="M 250 135 L 300 135" class="relationship"/>
+  <text x="275" y="130" text-anchor="middle" class="relationship-label">1:N</text>
+  
+  <!-- Products -> Suppliers -->
+  <path d="M 500 120 L 550 120" class="relationship"/>
+  <text x="525" y="115" text-anchor="middle" class="relationship-label">N:1</text>
+  
+  <!-- Orders -> Customers -->
+  <path d="M 250 305 L 300 305" class="relationship"/>
+  <text x="275" y="300" text-anchor="middle" class="relationship-label">N:1</text>
+  
+  <!-- Orders -> Employees -->
+  <path d="M 500 320 L 550 320" class="relationship"/>
+  <text x="525" y="315" text-anchor="middle" class="relationship-label">N:1</text>
+  
+  <!-- Orders -> Shippers -->
+  <path d="M 500 380 L 550 380" class="relationship"/>
+  <text x="525" y="375" text-anchor="middle" class="relationship-label">N:1</text>
+  
+  <!-- Order Details -> Orders -->
+  <path d="M 400 430 L 400 450" class="relationship"/>
+  <text x="395" y="440" text-anchor="middle" class="relationship-label">N:1</text>
+  
+  <!-- Order Details -> Products -->
+  <path d="M 400 505 L 400 450" class="relationship"/>
+  <text x="405" y="475" text-anchor="middle" class="relationship-label">N:1</text>
+  
+  <!-- Employees -> Employees (Self-reference) -->
+  <path d="M 650 350 Q 700 330 650 310" class="relationship"/>
+  <text x="675" y="320" text-anchor="middle" class="relationship-label">1:N</text>
+  
+  <!-- CustomerCustomerDemo -> Customers -->
+  <path d="M 250 590 L 300 590" class="relationship"/>
+  <text x="275" y="585" text-anchor="middle" class="relationship-label">N:1</text>
+  
+  <!-- CustomerCustomerDemo -> CustomerDemographics -->
+  <path d="M 250 605 L 300 605" class="relationship"/>
+  <text x="275" y="600" text-anchor="middle" class="relationship-label">N:1</text>
+  
+  <!-- EmployeeTerritories -> Employees -->
+  <path d="M 500 590 L 550 590" class="relationship"/>
+  <text x="525" y="585" text-anchor="middle" class="relationship-label">N:1</text>
+  
+  <!-- EmployeeTerritories -> Territories -->
+  <path d="M 500 605 L 550 605" class="relationship"/>
+  <text x="525" y="600" text-anchor="middle" class="relationship-label">N:1</text>
+  
+  <!-- Territories -> Regions -->
+  <path d="M 750 620 L 800 620" class="relationship"/>
+  <text x="775" y="615" text-anchor="middle" class="relationship-label">N:1</text>
+
+  <!-- Legend -->
+  <rect x="800" y="50" width="200" height="120" class="table"/>
+  <rect x="800" y="50" width="200" height="25" class="table-header"/>
+  <text x="900" y="67" text-anchor="middle" class="table-title">图例</text>
+  <text x="810" y="90" class="column pk">红色: 主键 (PK)</text>
+  <text x="810" y="105" class="column fk">蓝色: 外键 (FK)</text>
+  <text x="810" y="120" class="column">黑色: 普通字段</text>
+  <text x="810" y="135" class="relationship-label">绿色箭头: 关系</text>
+  <text x="810" y="150" class="relationship-label">1:N = 一对多关系</text>
+  <text x="810" y="165" class="relationship-label">N:1 = 多对一关系</text>
+
+</svg>
