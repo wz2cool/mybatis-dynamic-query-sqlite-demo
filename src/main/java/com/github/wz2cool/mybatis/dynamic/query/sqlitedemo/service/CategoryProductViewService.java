@@ -34,24 +34,24 @@ public class CategoryProductViewService {
     public List<CategoryProductViewDO> findByCategoryName(String categoryName) {
 
         DynamicQuery<CategoryProductViewDO> onQuery = DynamicQuery.createQuery(CategoryProductViewDO.class)
-                .and(CategoryProductViewDO::getProductName, o -> o.contains("a"));
+                .and(CategoryProductViewDO::getProductName, o -> o.startWith("a"));
         ParamExpression whereExpression = onQuery.toWhereExpression();
+        // 构建ON_CONDITION_EXPRESSION
         String onConditionExpression = String.format("and %s", whereExpression.getExpression());
 
         DynamicQuery<CategoryProductViewDO> query = DynamicQuery.createQuery(CategoryProductViewDO.class)
                 .and(CategoryProductViewDO::getCategoryName, o -> o.contains(categoryName))
+                // 传递ON_CONDITION_EXPRESSION参数
                 .queryParam("ON_CONDITION_EXPRESSION", onConditionExpression);
 
+        // 传递WHERE_EXPRESSION参数, 因为 ON_CONDITION_EXPRESSION 的参数来自于whereExpression
+        query.queryParam("WHERE_EXPRESSION", whereExpression.getExpression());
         for (Map.Entry<String, Object> entry : whereExpression.getParamMap().entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
             query.queryParam(key, value);
 
         }
-
-        Map<String, Object> queryParamMap1 = query.toQueryParamMap();
         return categoryProductViewMapper.selectByDynamicQuery(query);
     }
-
-
 }
