@@ -34,27 +34,23 @@ public class CategoryProductViewService {
 
         DynamicQuery<CategoryProductViewDO> onQuery = DynamicQuery.createQuery(CategoryProductViewDO.class)
                 .and(CategoryProductViewDO::getProductName, o -> o.startWith("a"));
-        ParamExpression whereExpression = onQuery.toWhereExpression();
+        ParamExpression onFilterExpression = onQuery.toWhereExpression();
 
         // 构建ON_CONDITION_EXPRESSION, 这里最好需要加上判断，当whereExpression为空时，不构建ON_CONDITION_EXPRESSION
         // 以免残留 and 语法报错，就是说只有筛选才会有 and/or
         String onConditionExpression = "";
-        if (StringUtils.isNotBlank(whereExpression.getExpression())) {
-            onConditionExpression = String.format("and %s", whereExpression.getExpression());
+        if (StringUtils.isNotBlank(onFilterExpression.getExpression())) {
+            onConditionExpression = String.format("and %s", onFilterExpression.getExpression());
         }
 
         // 这个是主查询的构建
         DynamicQuery<CategoryProductViewDO> mainQuery = DynamicQuery.createQuery(CategoryProductViewDO.class)
                 .and(CategoryProductViewDO::getCategoryName, o -> o.contains(categoryName))
                 // 传递ON_CONDITION_EXPRESSION参数
-                .queryParam("ON_CONDITION_EXPRESSION", onConditionExpression);
+                .queryParam("ON_CONDITION_EXPRESSION", onConditionExpression)
+                // 传递ON_CONDITION_EXPRESSION参数的其他参数
+                .queryParam(onFilterExpression.getParamMap());
 
-        for (Map.Entry<String, Object> entry : whereExpression.getParamMap().entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-            mainQuery.queryParam(key, value);
-
-        }
         return categoryProductViewMapper.selectByDynamicQuery(mainQuery);
     }
 }
